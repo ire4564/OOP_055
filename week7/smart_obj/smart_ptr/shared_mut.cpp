@@ -38,6 +38,13 @@ shared_mut shared_mut::operator-(const shared_mut &shared){
 Object* shared_mut::operator->(){
 	return _mgr->ptr;
 }
+
+shared_mut& shared_mut::operator=(const shared_mut &r){
+	_mgr->~mgr();
+	_mgr = r._mgr;
+	this -> increase();
+	return *this;
+}
 void shared_mut::release() {
 	_mgr->count--;
 	if(_mgr->count == 0){

@@ -68,4 +68,13 @@ Object* unique_immut::get() const{
 		return _mgr->ptr;
 	}
 }
+unique_immut& unique_immut::operator=(unique_immut &r){
+	if(this != &r){
+	      _mgr->~mgr();
+              _mgr = r._mgr;
+	      return *this;
+	 }
+	return *this;
+}
+
 } // end of namespace ptr
